@@ -1,4 +1,3 @@
-#encoding: utf-8
 require 'rubygems'
 require 'sinatra'
 require 'sinatra/reloader'
@@ -6,7 +5,7 @@ require 'sinatra/activerecord'
 
 set :database, "sqlite3:pizzashop.db"
 
-class Product < Activerecord::Base
+class Product < ActiveRecord::Base
 end
 
 get '/' do
