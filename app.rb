@@ -19,13 +19,19 @@ end
 
 post '/cart' do
 	orders_input = params[:orders]
-	@orders = parse_orders(orders_input)
+	@items = parse_orders orders_input
+
+	@items.each do |item|
+		#item[0] это id, cnt
+		#используем active record для поиска по id
+		item[0] = Product.find(item[0])
+	end
 	
 	erb :cart
 end
 
-def parse_orders(orders_input)
-  s1 = orders_input.split(",")
+def parse_orders orders_input
+  s1 = orders_input.split(/,/)
   arr = []
 
 	s1.each do |x|
