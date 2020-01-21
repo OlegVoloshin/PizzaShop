@@ -18,8 +18,8 @@ get '/about' do
 end
 
 post '/cart' do
-	orders_input = params[:orders]
-	@items = parse_orders orders_input
+	@orders_input = params[:orders]
+	@items = parse_orders(@orders_input)
 
 	@items.each do |item|
 		#item[0] это id, cnt
@@ -30,7 +30,7 @@ post '/cart' do
 	erb :cart
 end
 
-def parse_orders orders_input
+def parse_orders(orders_input)
   s1 = orders_input.split(/,/)
   arr = []
 
