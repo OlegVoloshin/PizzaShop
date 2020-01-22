@@ -26,15 +26,22 @@ post '/place_order' do
 end
 
 post '/cart' do
+	#получаем список параметров и разбираем (parse) их
 	@orders_input = params[:orders]
 	@items = parse_orders(@orders_input)
+
+	#выводим сообщение о том, что корзина пуста
+	if @items.length == 0
+		return erb :cart_is_empty
+		
+	end
 
 	@items.each do |item|
 		#item[0] это id, cnt
 		#используем active record для поиска по id
 		item[0] = Product.find(item[0])
 	end
-	
+	# возвращаем представление по-умолчанию
 	erb :cart
 end
 
