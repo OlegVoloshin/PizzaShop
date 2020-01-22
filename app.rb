@@ -26,7 +26,7 @@ post '/place_order' do
 end
 
 post '/cart' do
-	@orders_input = params[:orders_input]
+	@orders_input = params[:orders]
 	@items = parse_orders(@orders_input)
 
 	@items.each do |item|
